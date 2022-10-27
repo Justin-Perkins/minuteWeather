@@ -1,0 +1,44 @@
+<h2>Sign-Up</h2>
+<mat-dialog-content>
+  <mat-stepper>
+    <mat-step>
+      <form [formGroup]="loginInformation">
+        <mat-form-field>
+          <mat-label for="userName">Username</mat-label>
+          <input [required]="true" matInput="text"/>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label for="password">Password</mat-label>
+          <input [required]="true" matInput="password"/>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button matStepperNext type="button">Next</button>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form>
+        <mat-form-field>
+          <mat-label for="Phone">Phone</mat-label>
+          <input [required]="true" matInput="tel"/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="Phone">First Name</mat-label>
+          <input [required]="true" matInput="text"/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="Phone">Last Name</mat-label>
+          <input [required]="true" matInput="text"/>
+        </mat-form-field>
+        <mat-form-field label="Overview">
+          <mat-label for="Phone">Country Code</mat-label>
+          <input [required]="true" matInput="text"/>
+
+        </mat-form-field>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel="Review">Review</ng-template>
+    </mat-step>
+  </mat-stepper>
+</mat-dialog-content>
