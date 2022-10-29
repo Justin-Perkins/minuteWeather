@@ -1,6 +1,6 @@
 <h2>Sign-Up</h2>
 <mat-dialog-content>
-  <mat-stepper>
+  <mat-stepper linear>
     <mat-step>
       <form [formGroup]="loginInformation">
         <mat-form-field>
@@ -22,6 +22,11 @@
           <mat-label for="Phone">Phone</mat-label>
           <input [required]="true" matInput="tel"/>
         </mat-form-field>
+        <button mat-stroked-button>Send Verification Code</button>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form>
         <mat-form-field>
           <mat-label for="Phone">First Name</mat-label>
           <input [required]="true" matInput="text"/>
