@@ -1,4 +1,5 @@
-﻿using SendTextMessage;
+﻿using OpenWeatherAPI;
+using SendTextMessage;
 
 class MessageHandler
 {
@@ -7,7 +8,7 @@ class MessageHandler
     static string? verificationCode;
     static string? userInput = "-1";
 
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
 
         // Look at this later https://www.nuget.org/packages/libphonenumber-csharp/
@@ -19,7 +20,8 @@ class MessageHandler
             Console.WriteLine("1) Send a SMS message");
             Console.WriteLine("2) Send a SMS verification code");
             Console.WriteLine("3) Validate a SMS verification code");
-            Console.WriteLine("4) Exit");
+            Console.WriteLine("4) Get weather data");
+            Console.WriteLine("5) Exit");
             userInput = Console.ReadLine();
 
 
@@ -63,8 +65,52 @@ class MessageHandler
 
                     break;
                 case 4:
+                    var city = await WeatherAPI.getCityData("Hooksett", "US-NH", "3166-2:US");
+
+                    if (city == null)
+                    {
+                        Console.WriteLine("City coordinates could not be retrieved");
+                        return;
+                    }
+
+                    Console.WriteLine("City Country: " + city.getCountry());
+                    Console.WriteLine("City State: " + city.getState());
+                    Console.WriteLine("City Name: " + city.getName());
+                    Console.WriteLine("City latitude: " + city.getLatitude());
+                    Console.WriteLine("City longitude: " + city.getLongitude() + "\n");
+
+                    if (city.getLatitude() == null || city.getLongitude() == null)
+                    {
+                        Console.WriteLine("City coordinates could not be retrieved");
+                        return;
+                    }
+
+                    var weatherData = await WeatherAPI.getWeatherData(city.getLatitude(), city.getLongitude());
+
+                    if (weatherData == null)
+                    {
+                        Console.WriteLine("Failed to get the weather data, do you have internet?");
+                        return;
+                    }
+
+                    Console.WriteLine("City latitude: " + weatherData.getLatitude());
+                    Console.WriteLine("City longitude: " + weatherData.getLongitude());
+                    Console.WriteLine("Current weather: " + weatherData.getCurrentWeather());
+                    Console.WriteLine("Current weather description: " + weatherData.getCurrentWeatherDescription());
+                    Console.WriteLine("Current temperature: " + weatherData.getCurrentTemperature());
+                    Console.WriteLine("Current feels like temperature: " + weatherData.getFeelsLikeTemperature());
+                    Console.WriteLine("Minimum temperature: " + weatherData.getMinimumTemperature());
+                    Console.WriteLine("Maximum temperature: " + weatherData.getMaximumTemperature());
+                    Console.WriteLine("Current pressure: " + weatherData.getPressure());
+                    Console.WriteLine("Current humidity: " + weatherData.getHumidity());
+                    Console.WriteLine("Current visibility: " + weatherData.getVisibility());
+                    Console.WriteLine("Current wind speed: " + weatherData.getWindSpeed());
+                    Console.WriteLine("Current wind degree: " + weatherData.getWindDegree());
+                    break;
+                case 5:
                     userInput = "0";
                     break;
+            
 
                 default:
                     break;
