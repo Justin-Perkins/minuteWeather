@@ -11,7 +11,9 @@ export class SignUpComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<SignUpComponent>) { }
 
-  loginInformation = new FormGroup({});
+  loginInformation = new FormGroup({
+
+  });
 
 
   closeDialog(){
