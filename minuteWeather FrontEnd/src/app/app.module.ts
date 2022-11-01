@@ -7,18 +7,32 @@ import {MatSliderModule} from "@angular/material/slider";
 import { LoginComponent } from './Components/login/login.component';
 import { BannerComponent } from './Components/banner/banner.component';
 import {MatButtonModule} from "@angular/material/button";
+import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatStepperModule} from "@angular/material/stepper";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    BannerComponent
+    BannerComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatSliderModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
