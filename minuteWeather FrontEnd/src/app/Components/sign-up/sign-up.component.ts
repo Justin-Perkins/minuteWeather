@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {Form, FormControl, FormGroup, Validators} from "@angular/forms";
 
@@ -36,14 +36,18 @@ export class SignUpComponent implements OnInit {
   get IsValidPhone(): boolean{
     return <boolean>this.phoneInformation.get('phone')?.valid;
   };
-  //login, phone, user details
+
+  get IsValidVerificationCode(): boolean{
+    return <boolean>this.phoneInformation.get('verificationCode')?.valid;
+  };
 
   closeDialog(){
     this.dialogRef.close('test');
   }
 
   requestVerificationCode(): void{
-     let phone:string = this.phoneInformation.get('phone')?.value;
+    let phone:string = this.phoneInformation.get('phone')?.value;
+    document.getElementById('verificationInput')?.classList.toggle('hide');
    }
 
   ngOnInit(): void {
