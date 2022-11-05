@@ -2,7 +2,6 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient; 
 
-
 namespace minuteWeather_BackEnd.Controllers;
 
 public class SQLController : ControllerBase
