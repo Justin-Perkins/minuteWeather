@@ -25,7 +25,7 @@ create table login (
     
 drop table if exists daily_alert;
 create table daily_alert(
-	user_id int,
+	user_id int NOT NULL AUTO_INCREMENT,
 	alert_time time, 
 	temp tinyint(1), 
 	humidity tinyint(1), 
@@ -37,7 +37,7 @@ create table daily_alert(
 
 drop table if exists weekly_alert;
 create table weekly_alert(
-	user_id int,
+	user_id int NOT NULL AUTO_INCREMENT,
 	alert_time time, 
 	temp tinyint(1), 
 	humidity tinyint(1), 
@@ -47,7 +47,16 @@ create table weekly_alert(
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-insert into users (first_name, last_name, phone, city_name, state_code, country_code) values
-	('John', 'Doe', 6031233456, 'Concord', 'NH', 'US');
+use weather_app;
 
-Select * from users;
+insert into users(first_name, last_name, phone, city_name, state_code, country_code) 
+	values('John', 'Jame', 1234678823, 'Brunswick', 'ME', 'US'), ('Kevin', 'Thomas', 8490879654, 'Portland', 'ME', 'US'), ('Carla', 'Williams', 9730198471, 'Augusta', 'ME', 'US'); 
+    
+insert into login(username, password) 
+	values('LobstserFan01', 'BigClaw'), ('PortandSeaDogs', 'Homerun'), ('TractorSupply', 'CowFeed60');
+    
+insert into daily_alert(alert_time, temp, humidity, precipitation, wind, uv) 
+	values ('13:30:00', 1, 0, 1, 0, 1), ('05:0:00', 1, 1, 1, 1, 0), ('16:45:00', 1, 1, 0, 0, 1);
+    
+insert into weekly_alert(alert_time, temp, humidity, precipitation, wind, uv) 
+	values ('12:30:00', 1, 0, 1, 1, 1), ('04:0:00', 1, 1, 0, 1, 0), ('14:45:00', 0, 1, 0, 0, 1);
