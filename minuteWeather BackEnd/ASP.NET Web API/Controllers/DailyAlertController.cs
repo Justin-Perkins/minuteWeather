@@ -16,8 +16,9 @@ public class DailyAlertController : SQLController
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetDailyAlerts")]
-    public string? Get()
+    [HttpGet]
+    [Route("GetAllDailyAlerts")]
+    public string? GetDailyAlerts()
     {
         List<Alert> dailyAlertList = new List<Alert>();
         OpenSQLConnection();
@@ -29,7 +30,7 @@ public class DailyAlertController : SQLController
         {
             Alert tempAlert = new Alert();
             tempAlert.user_id = Convert.ToInt32(reader["user_id"]); 
-            tempAlert.alert_time = Convert.ToDateTime(reader["alert_time"]); 
+            tempAlert.alert_time = Convert.ToString(reader["alert_time"]); 
             tempAlert.temp = Convert.ToInt32(reader["temp"]);
             tempAlert.humidity = Convert.ToInt32(reader["humidity"]);
             tempAlert.precipitation = Convert.ToInt32(reader["precipitation"]);
@@ -46,14 +47,14 @@ public class DailyAlertController : SQLController
     }
 
     [HttpPost]
+    [Route("NewDailyAlert")]
     public void Post([FromQuery] Alert t_alert){
         OpenSQLConnection();
         
-        string query = "insert into daily_alert(user_id, alert_time, temp, humidity, precipitation, wind, uv) values(@user_id, @alert_time, @temp, @humidity, @precipitation, @wind, @uv)";
+        string query = "insert into daily_alert(alert_time, temp, humidity, precipitation, wind, uv) values(@alert_time, @temp, @humidity, @precipitation, @wind, @uv)";
         
         cmd = new MySqlCommand(query, conn);
         
-        cmd.Parameters.AddWithValue("@user_id", t_alert.user_id);
         cmd.Parameters.AddWithValue("@alert_time", t_alert.alert_time);
         cmd.Parameters.AddWithValue("@temp", t_alert.temp);
         cmd.Parameters.AddWithValue("@humidity", t_alert.humidity);
@@ -66,6 +67,7 @@ public class DailyAlertController : SQLController
     }
 
     [HttpPut]
+    [Route("UpdateDailyAlert")]
     public void Put([FromQuery] Alert t_alert){
         OpenSQLConnection();
         

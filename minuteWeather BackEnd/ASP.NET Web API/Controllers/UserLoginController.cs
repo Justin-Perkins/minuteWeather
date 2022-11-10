@@ -16,8 +16,9 @@ public class UserLoginController : SQLController
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetUserLogin")]
-    public string? Get()
+    [HttpGet]
+    [Route("GetUserId")]
+    public string? GetUserId()
     {
         List<UserLogin> loginList = new List<UserLogin>();
         OpenSQLConnection();
@@ -41,20 +42,48 @@ public class UserLoginController : SQLController
         return json;
     }
 
+    [HttpGet]
+    [Route("GetSpecificId")]
+    public string? GetSpecificId([FromQuery] int user_Id)
+    {
+        List<UserLogin> loginList = new List<UserLogin>();
+        OpenSQLConnection();
+        string query = "select * from login where user_id = @id;";
+        cmd = new MySqlCommand(query, conn);
+        cmd.Parameters.AddWithValue("@id", user_Id);
+        reader = cmd.ExecuteReader();
+        
+        while (reader.Read())
+        {
+            UserLogin tempUserLogin = new UserLogin();
+            tempUserLogin.user_id = Convert.ToInt32(reader["user_id"]); 
+            tempUserLogin.username = Convert.ToString(reader["username"]); 
+            tempUserLogin.password = Convert.ToString(reader["password"]);
+            loginList.Add(tempUserLogin);
+        }
+
+        conn = CloseSQLConnection();
+
+        var json = JsonSerializer.Serialize(loginList);
+        
+        return json;
+    }
+
     [HttpPost]
-    public void Post([FromQuery] UserLogin t_userLogin){
+    [Route("NewUserLogin")]
+    public void NewUserLogin ([FromQuery] string username, string password){
         OpenSQLConnection();
         
-        string query = "insert into login (user_id, username, password) values(@user_id, @username, @password);";
+        string query = "insert into login (username, password) values(@username, @password);";
         
         cmd = new MySqlCommand(query, conn);
         
-        cmd.Parameters.AddWithValue("@user_id", t_userLogin.user_id);
-        cmd.Parameters.AddWithValue("@username", t_userLogin.username);
-        cmd.Parameters.AddWithValue("@password", t_userLogin.password);
+        cmd.Parameters.AddWithValue("@username", username);
+        cmd.Parameters.AddWithValue("@password", password);
         
         cmd.ExecuteNonQuery();
         conn = CloseSQLConnection();
+
     }
 
 }
