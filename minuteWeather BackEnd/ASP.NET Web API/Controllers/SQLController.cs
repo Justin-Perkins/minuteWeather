@@ -17,7 +17,7 @@ public class SQLController : ControllerBase
         string? MYSQL_PASSWORD = Environment.GetEnvironmentVariable("MySQL");
 
         //Grabs the MySQL password from enviornment variable
-        myConnectionString = "SERVER=localhost;DATABASE=weather_app;UID=root;PASSWORD='" + MYSQL_PASSWORD + "';";
+        myConnectionString = "SERVER=localhost;DATABASE=minuteWeather;UID=root;PASSWORD='" + MYSQL_PASSWORD + "';";
 
         //Tries to open a connection to the database
         try

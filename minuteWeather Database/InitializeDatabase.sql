@@ -1,14 +1,14 @@
-drop database if exists weather_app;
+drop database if exists minuteWeather;
 
-create database weather_app;
-use weather_app;
+create database minuteWeather;
+use minuteWeather;
 
 drop table if exists users;
 create table users (
 	user_id int NOT NULL AUTO_INCREMENT, 
 	first_name varchar(20), 
 	last_name varchar(20), 
-	phone bigint, 
+	phone VARCHAR(10), 
 	city_name varchar(20), 
 	state_code varchar(2),
 	country_code varchar(2),
@@ -47,10 +47,8 @@ create table weekly_alert(
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-use weather_app;
-
 insert into users(first_name, last_name, phone, city_name, state_code, country_code) 
-	values('John', 'Jame', 1234678823, 'Brunswick', 'ME', 'US'), ('Kevin', 'Thomas', 8490879654, 'Portland', 'ME', 'US'), ('Carla', 'Williams', 9730198471, 'Augusta', 'ME', 'US'); 
+	values('John', 'Jame', '1234678823', 'Brunswick', 'ME', 'US'), ('Kevin', 'Thomas', '8490879654', 'Portland', 'ME', 'US'), ('Carla', 'Williams', '9730198471', 'Augusta', 'ME', 'US'); 
     
 insert into login(username, password) 
 	values('LobstserFan01', 'BigClaw'), ('PortandSeaDogs', 'Homerun'), ('TractorSupply', 'CowFeed60');
