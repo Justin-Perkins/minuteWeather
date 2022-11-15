@@ -14,13 +14,15 @@ import {MatInputModule} from "@angular/material/input";
 import {MatStepperModule} from "@angular/material/stepper";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { TitleComponent } from './Components/title/title.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     BannerComponent,
-    SignUpComponent
+    SignUpComponent,
+    TitleComponent
   ],
   imports: [
     BrowserModule,
