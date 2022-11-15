@@ -1,5 +1,6 @@
 ﻿
 
+
 namespace MessageHandler
 {
     internal class WeatherData
@@ -23,6 +24,7 @@ namespace MessageHandler
         float uv = 0;
 
         public WeatherData(dynamic weatherData, dynamic ultraVioletJson)
+
         {
             latitude = weatherData.coord["lat"];
             longitude = weatherData.coord["lon"];
@@ -37,6 +39,7 @@ namespace MessageHandler
             visibility = weatherData.visibility;
             windSpeed = weatherData.wind["speed"];
             windDegree = weatherData.wind["deg"];
+
             country = weatherData.sys["country"];
             name = weatherData.name;
             uv = ultraVioletJson.value;

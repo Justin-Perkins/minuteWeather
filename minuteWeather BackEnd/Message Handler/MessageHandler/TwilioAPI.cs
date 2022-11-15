@@ -41,6 +41,7 @@ namespace SendTextMessage
             {
                 phoneNumber = "+1" + phoneNumber;
             }
+
             TwilioClient.Init(accountSid, authToken);
             try
             {
@@ -67,6 +68,7 @@ namespace SendTextMessage
             {
                 phoneNumber = "+1" + phoneNumber;
             }
+
             TwilioClient.Init(accountSid, authToken);
             try
             {
