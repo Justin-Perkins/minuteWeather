@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jwilder\\Desktop\\JuniorSemester1\\SoftwareEng\\minuteWeatherClone4\\minuteWeather BackEnd\\Message Handler\\MessageHandler\\MessageHandler\\MessageHandler.csproj": {}
+    "C:\\Users\\jwilder\\Desktop\\JuniorSemester1\\SoftwareEng\\minuteWeatherClone9\\minuteWeather BackEnd\\Message Handler\\MessageHandler\\MessageHandler\\MessageHandler.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jwilder\\Desktop\\JuniorSemester1\\SoftwareEng\\minuteWeatherClone4\\minuteWeather BackEnd\\Message Handler\\MessageHandler\\MessageHandler\\MessageHandler.csproj": {
+    "C:\\Users\\jwilder\\Desktop\\JuniorSemester1\\SoftwareEng\\minuteWeatherClone9\\minuteWeather BackEnd\\Message Handler\\MessageHandler\\MessageHandler\\MessageHandler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jwilder\\Desktop\\JuniorSemester1\\SoftwareEng\\minuteWeatherClone4\\minuteWeather BackEnd\\Message Handler\\MessageHandler\\MessageHandler\\MessageHandler.csproj",
+        "projectUniqueName": "C:\\Users\\jwilder\\Desktop\\JuniorSemester1\\SoftwareEng\\minuteWeatherClone9\\minuteWeather BackEnd\\Message Handler\\MessageHandler\\MessageHandler\\MessageHandler.csproj",
         "projectName": "MessageHandler",
-        "projectPath": "C:\\Users\\jwilder\\Desktop\\JuniorSemester1\\SoftwareEng\\minuteWeatherClone4\\minuteWeather BackEnd\\Message Handler\\MessageHandler\\MessageHandler\\MessageHandler.csproj",
+        "projectPath": "C:\\Users\\jwilder\\Desktop\\JuniorSemester1\\SoftwareEng\\minuteWeatherClone9\\minuteWeather BackEnd\\Message Handler\\MessageHandler\\MessageHandler\\MessageHandler.csproj",
         "packagesPath": "C:\\Users\\jwilder\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jwilder\\Desktop\\JuniorSemester1\\SoftwareEng\\minuteWeatherClone4\\minuteWeather BackEnd\\Message Handler\\MessageHandler\\MessageHandler\\obj\\",
+        "outputPath": "C:\\Users\\jwilder\\Desktop\\JuniorSemester1\\SoftwareEng\\minuteWeatherClone9\\minuteWeather BackEnd\\Message Handler\\MessageHandler\\MessageHandler\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -46,6 +46,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.31, )"
+            },
             "Twilio": {
               "target": "Package",
               "version": "[5.81.0, )"
