@@ -37,7 +37,6 @@ namespace SendTextMessage
         /* send a SMS verification code */
         public static bool sendPhoneNumberVerification(string phoneNumber)
         {
-
             if (!phoneNumber.StartsWith("+1"))
             {
                 phoneNumber = "+1" + phoneNumber;

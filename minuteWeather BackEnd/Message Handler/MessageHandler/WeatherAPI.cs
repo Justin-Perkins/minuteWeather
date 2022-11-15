@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 
-namespace OpenWeatherAPI
+
+namespace MessageHandler
 {
     internal class WeatherAPI
     {
@@ -30,6 +31,8 @@ namespace OpenWeatherAPI
         {
             //https://api.openweathermap.org/data/2.5/weather?lat=43.096972&lon=-71.465378&appid=454d61aae24208d25e6421d9b83c4fca&units=imperial
 
+            //https://api.openweathermap.org/data/2.5/uvi?lat=43.096972&lon=-71.465378&appid=454d61aae24208d25e6421d9b83c4fca
+
             string url = String.Format("https://api.openweathermap.org/data/2.5/weather?lat={0}&lon={1}&appid=454d61aae24208d25e6421d9b83c4fca&units=imperial",lat,lon);
             string response = await httpClient.GetStringAsync(url);
 
@@ -46,10 +49,12 @@ namespace OpenWeatherAPI
                 return null;
             }
 
-            WeatherData weatherData = new WeatherData(weatherJson);
-
+            url = String.Format("https://api.openweathermap.org/data/2.5/uvi?lat={0}&lon={1}&appid=454d61aae24208d25e6421d9b83c4fca", lat, lon);
+            response = await httpClient.GetStringAsync(url);
+            dynamic? ultraVioletJson = JsonConvert.DeserializeObject(response);
+            WeatherData weatherData = new WeatherData(weatherJson, ultraVioletJson);
             return weatherData;
-            
+
         }
     }
 }
