@@ -1,6 +1,6 @@
 ﻿
 
-namespace OpenWeatherAPI
+namespace MessageHandler
 {
     internal class City
     {
@@ -43,6 +43,5 @@ namespace OpenWeatherAPI
         {
             return state;
         }
-
     }
 }

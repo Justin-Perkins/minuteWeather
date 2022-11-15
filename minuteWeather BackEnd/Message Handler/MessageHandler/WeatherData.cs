@@ -1,24 +1,30 @@
 ﻿
 
-namespace OpenWeatherAPI
+
+namespace MessageHandler
 {
     internal class WeatherData
     {
-        float latitude;
-        float longitude;
-        string currentWeather;
-        string currentWeatherDescription;
-        float currentTemperature;
-        float feelsLikeTemperature;
-        float? minimumTemperature;
-        float? maximumTemperature;
-        float pressure;
-        float humidity;
-        float visibility;
-        float windSpeed;
-        float windDegree;
+        float latitude = 0;
+        float longitude = 0;
+        string currentWeather = "";
+        string currentWeatherDescription = "";
+        float currentTemperature = 0;
+        float feelsLikeTemperature = 0;
+        float? minimumTemperature = 0;
+        float? maximumTemperature = 0;
+        float pressure = 0;
+        float humidity = 0;
+        float visibility = 0;
+        float windSpeed = 0;
+        float windDegree = 0;
+        float rain = 0;
+        string country = "";
+        string name = "";
+        float uv = 0;
 
-        public WeatherData(dynamic weatherData)
+        public WeatherData(dynamic weatherData, dynamic ultraVioletJson)
+
         {
             latitude = weatherData.coord["lat"];
             longitude = weatherData.coord["lon"];
@@ -33,6 +39,18 @@ namespace OpenWeatherAPI
             visibility = weatherData.visibility;
             windSpeed = weatherData.wind["speed"];
             windDegree = weatherData.wind["deg"];
+
+            country = weatherData.sys["country"];
+            name = weatherData.name;
+            uv = ultraVioletJson.value;
+            try
+            {
+                rain = weatherData.rain["1h"];
+            }
+            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
         }
 
         public float getLongitude()
@@ -98,6 +116,26 @@ namespace OpenWeatherAPI
         public float getWindDegree()
         {
             return windDegree;
+        }
+
+        public float getRainfall()
+        {
+            return rain;
+        }
+
+        public string getCountryName()
+        {
+            return country;
+        }
+
+        public string getCityName()
+        {
+            return name;
+        }
+
+        public float getUltraViolet()
+        {
+            return uv;
         }
     }
 }
