@@ -1,0 +1,61 @@
+<h2>Sign-Up</h2>
+<mat-dialog-content>
+  <form [formGroup]="createAccount">
+    <mat-stepper linear>
+      <mat-step formGroupName="loginInformation" [stepControl]="loginInformation">
+        <mat-form-field>
+          <mat-label for="userName">Username</mat-label>
+          <input matInput="text" formControlName="userName" required/>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label for="password">Password</mat-label>
+          <input matInput="password" formControlName="password"/>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button matStepperNext type="button">Next</button>
+      </mat-step>
+      <mat-step formGroupName="phoneInformation" [stepControl]="phoneInformation">
+        <mat-form-field>
+          <mat-label for="Phone">Phone</mat-label>
+          <input matInput="tel" formControlName="phone"/>
+          <mat-error>Not A Valid Telephone Number.</mat-error>
+        </mat-form-field>
+        <button
+          (click)="requestVerificationCode()"
+          [disabled]="!IsValidPhone"
+          [class.grayOut]="!IsValidPhone"
+          mat-stroked-button>
+          Send Verification Code
+        </button>
+        <mat-form-field id="verificationInput" class="hide">
+          <mat-label>Enter Verification Code</mat-label>
+          <input matInput="text" formControlName="verificationCode"/>
+          <mat-error>Incorrect Code.</mat-error>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button matStepperNext type="button" *ngIf="IsValidVerificationCode">Next</button>
+      </mat-step>
+      <mat-step>
+        <mat-form-field>
+          <mat-label for="Phone">First Name</mat-label>
+          <input matInput="text"/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="Phone">Last Name</mat-label>
+          <input matInput="text"/>
+        </mat-form-field>
+        <mat-form-field label="Overview">
+          <mat-label for="Phone">Country Code</mat-label>
+          <input matInput="text"/>
+
+        </mat-form-field>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel="Review">Review</ng-template>
+        <mat-label>Test</mat-label>
+        <mat-label></mat-label>
+      </mat-step>
+    </mat-stepper>
+  </form>
+</mat-dialog-content>
