@@ -26,6 +26,11 @@ export class SignUpComponent implements OnInit {
         [Validators.required])
     })
   });
+
+  setdata(){
+
+  }
+
   get loginInformation(): FormGroup{
     return this.createAccount.get('loginInformation') as FormGroup;
   };
