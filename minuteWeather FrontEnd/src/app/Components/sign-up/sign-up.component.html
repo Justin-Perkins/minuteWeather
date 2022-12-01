@@ -11,7 +11,10 @@
         <mat-form-field>
           <mat-label for="password">Password</mat-label>
           <input matInput="password" formControlName="password"/>
+          <mat-error class="error">Does not meet requirements.</mat-error>
         </mat-form-field>
+        <label class="requirements">Minimum 7 characters</label>
+        <label class="requirements">Must have 1 number and special character.</label>
         <br>
         <button mat-raised-button matStepperNext type="button">Next</button>
       </mat-step>
@@ -46,10 +49,19 @@
           <input matInput="text"/>
         </mat-form-field>
         <mat-form-field label="Overview">
-          <mat-label for="Phone">Country Code</mat-label>
+          <mat-label for="Phone">Country</mat-label>
           <input matInput="text"/>
-
         </mat-form-field>
+        <mat-form-field label="Overview">
+          <mat-label for="Phone">State</mat-label>
+          <input matInput="text"/>
+        </mat-form-field>
+        <mat-form-field label="Overview">
+          <mat-label for="Phone">City Name</mat-label>
+          <input matInput="text"/>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button matStepperNext type="button">Next</button>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel="Review">Review</ng-template>

@@ -14,7 +14,9 @@ export class SignUpComponent implements OnInit {
   createAccount = new FormGroup({
     loginInformation: new FormGroup({
       userName: new FormControl('',[Validators.required]),
-      password: new FormControl('',[Validators.required])
+      password: new FormControl('',[Validators.required,
+        Validators.minLength(7),
+        Validators.pattern("(?=.*[a-zA-Z])(?=.*[0-9]).+")],)
     }),
     phoneInformation: new FormGroup({
       phone: new FormControl('',
@@ -26,10 +28,6 @@ export class SignUpComponent implements OnInit {
         [Validators.required])
     })
   });
-
-  setdata(){
-
-  }
 
   get loginInformation(): FormGroup{
     return this.createAccount.get('loginInformation') as FormGroup;
@@ -53,6 +51,11 @@ export class SignUpComponent implements OnInit {
   requestVerificationCode(): void{
     let phone:string = this.phoneInformation.get('phone')?.value;
     document.getElementById('verificationInput')?.classList.toggle('hide');
+   }
+
+   onSubmit(){
+    //form submit data here
+
    }
 
   ngOnInit(): void {
