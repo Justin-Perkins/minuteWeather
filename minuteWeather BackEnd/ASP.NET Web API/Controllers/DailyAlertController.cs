@@ -8,7 +8,6 @@ namespace minuteWeather_BackEnd.Controllers;
 [Route("[controller]")]
 public class DailyAlertController : SQLController
 {
-
     private readonly ILogger<DailyAlertController> _logger;
 
     public DailyAlertController(ILogger<DailyAlertController> logger)
@@ -86,5 +85,4 @@ public class DailyAlertController : SQLController
         cmd.ExecuteNonQuery();
         conn = CloseSQLConnection();
     }
-
 }
