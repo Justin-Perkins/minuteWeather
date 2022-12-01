@@ -8,13 +8,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginComponent } from './Components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BannerComponent } from './Components/banner/banner.component';
-import {MatButtonModule} from "@angular/material/button";
+import { MatButtonModule } from "@angular/material/button";
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
-import {MatDialogModule} from "@angular/material/dialog";
-import {MatInputModule} from "@angular/material/input";
-import {MatStepperModule} from "@angular/material/stepper";
-import {ReactiveFormsModule} from "@angular/forms";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatInputModule } from "@angular/material/input";
+import { MatStepperModule } from "@angular/material/stepper";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { TitleComponent } from './Components/title/title.component';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { TitleComponent } from './Components/title/title.component';
     LoginComponent,
     BannerComponent,
     SignUpComponent,
-    TitleComponent
+    TitleComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +36,7 @@ import { TitleComponent } from './Components/title/title.component';
     MatStepperModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
