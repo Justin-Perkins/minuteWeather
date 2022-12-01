@@ -1,0 +1,19 @@
+#header{
+  padding: 2.5em 1em;
+  background: #125669;
+}
+
+h1{
+  size: 10em;
+  font-size: 3em;
+  padding: 1em;
+  color: white;
+  display: inline;
+}
+
+button{
+  font-size: 1.25em;
+  padding: .5em 2em;
+  margin-right: 2em;
+  float: right;
+}
