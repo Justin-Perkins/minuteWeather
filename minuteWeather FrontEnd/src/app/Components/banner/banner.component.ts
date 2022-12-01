@@ -12,7 +12,7 @@ export class BannerComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   openDialog(){
-    this.dialog.open(SignUpComponent,{width: '30em', height: '40em'});
+    this.dialog.open(SignUpComponent,{width: '32em', height: '40em', maxHeight: '95%'});
   }
 
   ngOnInit(): void {
