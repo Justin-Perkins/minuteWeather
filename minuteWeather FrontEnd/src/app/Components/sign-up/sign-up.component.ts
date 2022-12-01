@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {Form, FormControl, FormGroup, Validators} from "@angular/forms";
+import { BackendCallsService } from '../Backend-calls/backend-calls.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,7 +10,7 @@ import {Form, FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<SignUpComponent>) { }
+  constructor(public dialogRef: MatDialogRef<SignUpComponent>, public backend: BackendCallsService) { }
 
   createAccount = new FormGroup({
     loginInformation: new FormGroup({
@@ -51,6 +52,8 @@ export class SignUpComponent implements OnInit {
   requestVerificationCode(): void{
     let phone:string = this.phoneInformation.get('phone')?.value;
     document.getElementById('verificationInput')?.classList.toggle('hide');
+
+    this.backend.sendVerification(phone);
    }
 
    onSubmit(){
