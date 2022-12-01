@@ -11,7 +11,6 @@ import { BannerComponent } from './Components/banner/banner.component';
 import {MatButtonModule} from "@angular/material/button";
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import {MatDialogModule} from "@angular/material/dialog";
-import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatStepperModule} from "@angular/material/stepper";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -36,7 +35,8 @@ import { TitleComponent } from './Components/title/title.component';
     MatInputModule,
     MatStepperModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
