@@ -86,4 +86,24 @@ public class UserLoginController : SQLController
 
     }
 
+    [HttpGet]
+    [Route("GetUsernameExists")]
+    public bool? GetUsernameExists([FromQuery] string username)
+    {
+        OpenSQLConnection();
+        cmd = new MySqlCommand("select username from login where login.username = @user;", conn);
+        cmd.Parameters.AddWithValue("@user", username);
+        var exists = cmd.ExecuteScalar();
+        if (exists != null)
+        {
+            conn = CloseSQLConnection();
+            return true;
+        }
+        else
+        {
+            conn = CloseSQLConnection();
+            return false;
+        }
+    }
+
 }
