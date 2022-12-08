@@ -1,8 +1,7 @@
 ﻿
-
-
 namespace MessageHandler
 {
+    /* Store data about the weather */
     internal class WeatherData
     {
         float latitude = 0;

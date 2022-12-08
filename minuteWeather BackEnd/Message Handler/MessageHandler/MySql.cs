@@ -2,16 +2,17 @@
 
 namespace MessageHandler
 {
+    /* Class to interact with the database */
     internal class MySql
     {
         static string query = ""; // query string
         static MySqlCommand? cmd;// sql command
         static MySqlDataReader? dataReader; // read data from a sql query
-        public static List<TimeSpan> timeList = new List<TimeSpan>();
-        public static List<Alert> alertList = new List<Alert>();
+        public static List<TimeSpan> timeList = new List<TimeSpan>(); // List of times to send alerts
+        public static List<Alert> alertList = new List<Alert>(); // List of alerts and their porperties
 
 
-        // Return a list of all alert times in the database. Exclude duplicate times
+        /* Return a list of all alert times in the database. Exclude duplicate times */
         public static List<TimeSpan> updateAlertList(MySqlConnection conn)
         {
             timeList.Clear();
@@ -28,7 +29,7 @@ namespace MessageHandler
         }
 
 
-        // Return a list of all alerts in the database at a specific time
+        /* Return a list of all alerts in the database at a specific time */
         public static List<Alert> getAlertsFromDatabase(MySqlConnection conn, string alert_time)
         {
             alertList.Clear();
