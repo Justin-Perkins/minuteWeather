@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -87,13 +88,22 @@ export class BackendCallsService {
     return this.http.post<any>(url, body, {params:queryParams}).subscribe();
   }
 
-  verifyPhoneNumber(phoneNumber:string,verificationCode:string) {
+  /*verifyPhoneNumber(phoneNumber:string,verificationCode:string) {
     let url = "https://localhost:7133/PhoneVerification/VerifyPhoneNumber";
     let queryParams = new HttpParams();
     let body = {};
     queryParams = queryParams.append("phoneNumber",phoneNumber);
     queryParams = queryParams.append("verificationCode",verificationCode);
     return this.http.get(url,{params:queryParams}).subscribe();
+  }*/
+
+  verifyPhoneNumber(phoneNumber:string,verificationCode:string):Observable<any>{
+    let url = "https://localhost:7133/PhoneVerification/VerifyPhoneNumber";
+    let queryParams = new HttpParams();
+    let body = {};
+    queryParams = queryParams.append("phoneNumber",phoneNumber);
+    queryParams = queryParams.append("verificationCode",verificationCode);
+    return this.http.get(url,{params:queryParams});
   }
 
   doesUsernameExist(username:string) {
