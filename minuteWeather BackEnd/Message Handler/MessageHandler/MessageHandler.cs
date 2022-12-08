@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 
 namespace MessageHandler
 {
+    /* Driver class */
     internal class MessageHandler
     {
         static string server = "localhost"; // server ip
@@ -13,8 +14,8 @@ namespace MessageHandler
         static string? password = Environment.GetEnvironmentVariable("SNHU_PASS"); // MySQL password
         static string connstring = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + username + ";" + "PASSWORD=" + password + ";"; // connection string for connection object
         static MySqlConnection conn = new MySqlConnection(connstring); // MySQL connection object
-        static DateTime lastMinute;
-        static System.Timers.Timer? timer;
+        static DateTime lastMinute; // Previous check time
+        static System.Timers.Timer? timer; // Timer to check for alerts to send
 
 
         // Start the program
@@ -25,15 +26,15 @@ namespace MessageHandler
             timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             timer.Start();
             while(true)
-            {
-                // Keep the program running forever
+            { // Keep the program running forever
             }
         }
 
 
         // Check for alerts to send. Execute at the top of the minute every minute
-        private static void OnTimedEvent(object? source, ElapsedEventArgs e) // execute function at the top of every minute
+        private static void OnTimedEvent(object? source, ElapsedEventArgs e) // execute findAlertsToSend function at the start of every minute
         {
+
             if (lastMinute.Minute < DateTime.Now.Minute || (lastMinute.Minute == 59 && DateTime.Now.Minute == 0))
             {
                 lastMinute = DateTime.Now;
@@ -43,7 +44,7 @@ namespace MessageHandler
         }
 
 
-        // Look at the alerts in the database. If alerts are found that need to be sent now, send them
+        // Look at the alerts in the database. If alerts are found that need to be sent now, get the data and send the data
         private static async void findAlertsToSend()
         {
             List<TimeSpan> timeList = MySql.updateAlertList(conn); 
@@ -53,7 +54,22 @@ namespace MessageHandler
                     List<Alert> alertList = MySql.getAlertsFromDatabase(conn, time.ToString());
                     foreach (Alert alert in alertList)
                     {
-                        try
+
+                        foreach (var v in new object[] { alert.city, alert.stateCode, alert.countryCode, alert.phone })
+                        {
+                            if (v == null)
+                            {
+                                Console.WriteLine("Failed to get weather data. Are you connected to the internet?");
+                                return;
+                            }
+                        }
+
+                        if (alert.city == null)
+                        {
+                            return;
+                        }
+
+                    try
                         {
                             Console.WriteLine("Sending alert to " + alert.phone);
                             City? city = await WeatherAPI.getCityData(alert.city, alert.stateCode, alert.countryCode);

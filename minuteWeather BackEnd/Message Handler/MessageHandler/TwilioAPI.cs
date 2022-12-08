@@ -5,6 +5,7 @@ using Twilio.Types;
 
 namespace SendTextMessage
 {
+    /* Twilio API methods for sending sms messages and phone verification */
     public static class TwilioAPI
     {
         static string? accountSid = Environment.GetEnvironmentVariable("TWILIO_ACCOUNT_SID");

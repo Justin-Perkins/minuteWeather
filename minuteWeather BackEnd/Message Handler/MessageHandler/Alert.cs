@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace MessageHandler
 {
+    /* Store data about an alert */
     internal class Alert
     {
         public int? user_id { get; set; }
@@ -21,6 +17,7 @@ namespace MessageHandler
         public string? countryCode { get; set; }
 
 
+        /* Create string to send to users phone */
         public string createTextString(WeatherData weather)
         {
             string message = "Weather Data for " + DateTime.Now.ToString() +

@@ -85,9 +85,6 @@ export class BackendCallsService {
     let queryParams = new HttpParams();
     let body = {};
     queryParams = queryParams.append("phoneNumber",phoneNumber);
-    console.log("Test");
-    console.log(phoneNumber);
-    console.log(url);
     return this.http.post<any>(url, body, {params:queryParams}).subscribe();
   }
 
@@ -109,4 +106,10 @@ export class BackendCallsService {
     return this.http.get(url,{params:queryParams});
   }
 
+  doesUsernameExist(username:string) {
+    let url = "https://localhost:7133/UserLogin/GetUsernameExists";
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("username",username);
+    return this.http.get(url,{params:queryParams}).subscribe();
+  }
 }
