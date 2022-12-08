@@ -51,14 +51,14 @@ create table weekly_alert(
 
 
 insert into users(first_name, last_name, phone, city_name, state_code, country_code) 
-	values('John', 'Jame', '1234678823', 'Brunswick', 'US-ME', '3166-2:US'), ('Kevin', 'Thomas', '8490879654', 'Portland', 'US-ME', '3166-2:US'), ('Carla', 'Williams', '9730198471', 'Augusta', 'US-ME', '3166-2:US')
+	values('John', 'Jame', '1234678823', 'Brunswick', 'US-ME', '3166-2:US'), ('Kevin', 'Thomas', '8490879654', 'Portland', 'US-ME', '3166-2:US'), ('Carla', 'Williams', '9730198471', 'Augusta', 'US-ME', '3166-2:US');
 
     
 insert into login(username, password) 
 	values('LobstserFan01', 'BigClaw'), ('PortandSeaDogs', 'Homerun'), ('TractorSupply', 'CowFeed60');
     
 insert into daily_alert(alert_time, temp, humidity, precipitation, wind, uv) 
-	values ('13:30:00', 1, 0, 1, 0, 1), ('05:0:00', 1, 1, 1, 1, 0), ('16:45:00', 1, 1, 0, 0, 1)
+	values ('13:30:00', 1, 0, 1, 0, 1), ('05:0:00', 1, 1, 1, 1, 0), ('16:45:00', 1, 1, 0, 0, 1);
     
 insert into weekly_alert(alert_time, temp, humidity, precipitation, wind, uv) 
 
