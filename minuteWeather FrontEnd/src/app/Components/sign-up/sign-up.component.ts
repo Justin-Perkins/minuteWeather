@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {Form, FormControl, FormGroup, Validators} from "@angular/forms";
 import { BackendCallsService } from '../Backend-calls/backend-calls.service';
+import { generate } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +11,7 @@ import { BackendCallsService } from '../Backend-calls/backend-calls.service';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<SignUpComponent>, public backend: BackendCallsService) { }
+  constructor(public dialogRef: MatDialogRef<SignUpComponent>, public backend: BackendCallsService) {}
 
   IsVerified:boolean = false;
   createAccount = new FormGroup({
