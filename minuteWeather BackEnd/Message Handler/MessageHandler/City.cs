@@ -2,6 +2,7 @@
 
 namespace MessageHandler
 {
+    /* Store data about a users location */
     internal class City
     {
         string name;

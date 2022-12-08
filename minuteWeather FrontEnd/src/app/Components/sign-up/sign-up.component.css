@@ -1,6 +1,7 @@
 .hide{
   display: none;
 }
+
 button{
   margin-bottom: 1em;
 }
@@ -11,4 +12,21 @@ button{
   margin: 0;
   font-size: .85em;
   color: gray;
+}
+
+#finishButton{
+  display: block;
+  margin-left:auto;
+  margin-right: auto;
+  margin-top: 3em;
+}
+
+#ConfirmationCheckmark{
+  display: block;
+  width: 5em;
+  margin: auto;
+}
+
+.center{
+  text-align: center;
 }
