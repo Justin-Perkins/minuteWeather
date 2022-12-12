@@ -25,7 +25,7 @@ namespace MessageHandler
             lastMinute = DateTime.Now;
             timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             timer.Start();
-            while(true)
+            while (true)
             { // Keep the program running forever
             }
         }
@@ -47,35 +47,22 @@ namespace MessageHandler
         // Look at the alerts in the database. If alerts are found that need to be sent now, get the data and send the data
         private static async void findAlertsToSend()
         {
-            List<TimeSpan> timeList = MySql.updateAlertList(conn); 
-            foreach (TimeSpan time in timeList) {
+            List<TimeSpan> timeList = MySql.updateAlertList(conn);
+            foreach (TimeSpan time in timeList)
+            {
                 if (time.Hours == DateTime.Now.Hour && time.Minutes == DateTime.Now.Minute)
                 {
                     List<Alert> alertList = MySql.getAlertsFromDatabase(conn, time.ToString());
                     foreach (Alert alert in alertList)
                     {
-
-                        foreach (var v in new object[] { alert.city, alert.stateCode, alert.countryCode, alert.phone })
-                        {
-                            if (v == null)
-                            {
-                                Console.WriteLine("Failed to get weather data. Are you connected to the internet?");
-                                return;
-                            }
-                        }
-
-                        if (alert.city == null)
-                        {
-                            return;
-                        }
-
-                    try
+                        try
                         {
                             Console.WriteLine("Sending alert to " + alert.phone);
                             City? city = await WeatherAPI.getCityData(alert.city, alert.stateCode, alert.countryCode);
                             WeatherData? weatherData = await WeatherAPI.getWeatherData(city.getLatitude(), city.getLongitude());
                             TwilioAPI.sendSmsMessage(alert.phone, alert.createTextString(weatherData));
-                        } catch (Exception)
+                        }
+                        catch (Exception)
                         {
                             Console.WriteLine("Failed to get weather data. Are you connected to the internet?");
                         }
