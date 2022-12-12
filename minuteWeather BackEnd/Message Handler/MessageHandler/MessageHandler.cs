@@ -48,14 +48,14 @@ namespace MessageHandler
         private static async void findAlertsToSend()
         {
             List<TimeSpan> timeList = MySql.updateAlertList(conn);
-            foreach (TimeSpan time in timeList)
+            foreach (TimeSpan time in timeList) // Iterate through all alert times in the database
             {
                 if (time.Hours == DateTime.Now.Hour && time.Minutes == DateTime.Now.Minute)
                 {
                     List<Alert> alertList = MySql.getAlertsFromDatabase(conn, time.ToString());
-                    foreach (Alert alert in alertList)
+                    foreach (Alert alert in alertList) // Iterate through the alerts that are ready to be sent
                     {
-                        try
+                        try // Try to send get the weather data and send the weather data
                         {
                             Console.WriteLine("Sending alert to " + alert.phone);
                             City? city = await WeatherAPI.getCityData(alert.city, alert.stateCode, alert.countryCode);
